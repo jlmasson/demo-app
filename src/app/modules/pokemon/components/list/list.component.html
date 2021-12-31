@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row my-2">
+                    <div class="col-12">
+                        <h3>Listado de Pokemon</h3>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-6 text-left">
+                        <input type="text" class="form-control" placeholder="Buscar" (keyup)="searchPokemon($event.target.value)">
+                    </div>
+                    <div class="col-6 text-right">
+                        <button class="btn btn-primary" routerLink="../create">
+                            <i class="fa fa-plus"></i>
+                            Nuevo
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Imagen</th>
+                                <th class="text-center">Ataque</th>
+                                <th class="text-center">Defensa</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let elem of pokemones">
+                                <td class="text-center align-middle">{{ elem.name }}</td>
+                                <td class="text-center align-middle">
+                                    <img [src]="elem.image" alt="Pokemon Image" width="70">
+                                </td>
+                                <td class="text-center align-middle"> {{ elem.attack }} </td>
+                                <td class="text-center align-middle"> {{ elem.defense }} </td>
+                                <td class="text-center align-middle">
+                                    <button class="btn btn-sm btn-link" title="Editar" routerLink="../edit/{{elem.id}}">
+                                        <i class="fa fa-pencil-alt"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-link" title="Eliminar" (click)="deletePokemon(elem)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="pokemones.length == 0" class="my-3 p-3 alert alert-primary">
+                    No existe información para mostrar
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
